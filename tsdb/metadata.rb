@@ -9,5 +9,5 @@ supports 'centos', '>= 5.8'
 supports 'ubuntu', '>= 12.04'
 
 depends 'java'
-depends 'poise', '~> 2.2'
+depends 'poise', '0.3.13'
 depends 'poise-service', '~> 1.0'
