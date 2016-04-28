@@ -6,14 +6,15 @@ bash 'add repo' do
                 yum -y localinstall jdk-8u60-linux-x64.rpm
         EOH
 end
-end
+
 when 'debian', 'ubuntu'
-	bash 'add repo for debian' do
-		code <<-EOH
-			apt-get -y install python-software-properties
-			add-apt-repository ppa:webupd8team/java
-			apt-get update
-			apt-get -y install oracle-java8-installer
-		EOH
-	end
+        bash 'add repo for debian' do
+                code <<-EOH
+                        apt-get -y install python-software-properties
+                        add-apt-repository ppa:webupd8team/java
+                        apt-get update
+                        echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+                        apt-get -y install oracle-java8-installer
+                EOH
+        end
 end
