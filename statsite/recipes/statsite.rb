@@ -23,13 +23,14 @@ template '/home/statsite/sinks/opentsdb.js' do
 	source 'opentsdb.js.erb'
 end
 
-template '/home/statsite/start.sh' do
-	source 'start.sh.erb'
+template '/etc/init.d/statsite' do
+	source 'startscript.sh.erb'
+	mode '555'
 end
 
 bash 'start server' do
 	code <<-EOH
 		cd /home/statsite
-		./start.sh
+		service statsite start
 	EOH
 end
