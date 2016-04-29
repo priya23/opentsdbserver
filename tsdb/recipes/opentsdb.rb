@@ -9,6 +9,10 @@ bash 'installing opentsdb' do
 						make install
                 EOH
         end
+template '/home/opentsdb/build/start.sh' do
+	source 'start.sh.erb'
+	mode '555'
+end
 
 bash 'start the server' do
 	code <<-EOH
