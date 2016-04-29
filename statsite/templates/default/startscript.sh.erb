@@ -15,6 +15,7 @@ NAME=testone
 
 do_start()
 {
+   rm /var/run/statsite.pid
    echo "starting!";
    cd /home/statsite
    ./src/statsite -f /home/statsite/statsite.conf &
