@@ -9,14 +9,14 @@ bash 'installing opentsdb' do
                                                 make install
                 EOH
         end
-template '/home/opentsdb/build/start.sh' do
-        source 'start.sh.erb'
-        mode '555'
+template '/etc/init.d/opentsdb' do
+	source 'startscript.sh.erb'
+	mode '555'
 end
+
 bash 'start the server' do
         code <<-EOH
-                cd /home/opentsdb/build
                 rm -rf /tmp/cache1/*
-                ./start.sh
+                service opentsdb start
         EOH
 end
