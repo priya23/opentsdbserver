@@ -1,13 +1,15 @@
-statsite]
+[statsite]
 port = 8125
 udp_port = 8125
 log_level = DEBUG
 log_facility = local0
 flush_interval = 10
 timer_eps = 0.01
+daemonize = true
 set_eps = 0.02
 stream_cmd = node sinks/opentsdb.js <%=node[:opentsdb][:host]%> 4242 _ 
 use_type_prefix = 0
+
 
 [histogram_api]
 prefix=api
