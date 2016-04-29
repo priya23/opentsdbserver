@@ -1,0 +1,22 @@
+statsite]
+port = 8125
+udp_port = 8125
+log_level = DEBUG
+log_facility = local0
+flush_interval = 10
+timer_eps = 0.01
+set_eps = 0.02
+stream_cmd = node sinks/opentsdb.js <%=node[:opentsdb][:host]%> 4242 _ 
+use_type_prefix = 0
+
+[histogram_api]
+prefix=api
+min=0
+max=100
+width=5
+
+[histogram_default]
+prefix=
+min=0
+max=200
+width=20
