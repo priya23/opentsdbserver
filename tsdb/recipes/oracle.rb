@@ -18,3 +18,8 @@ when 'debian', 'ubuntu'
                 EOH
         end
 end
+
+directory '/tmp/cache1' do
+  mode '0755'
+  action :create
+end
