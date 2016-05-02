@@ -16,8 +16,8 @@ NAME=testone
 do_start()
 {
    echo "starting!";
-   cd /home/opentsdb/build
- echo -ne '\n'| nohup ./tsdb tsd --port=4242 --staticroot=/home/opentsdb/build/staticroot --cachedir=/tmp/cache1 --zkquorum=<%= node[:hadoop][:zookeeper]%>:2181 --auto-metric &
+   cd /opentsdb/build
+ echo -ne '\n'| nohup ./tsdb tsd --port=4242 --staticroot=/opentsdb/build/staticroot --cachedir=/tmp/cache1 --zkquorum=<%= node[:hadoop][:zookeeper]%>:2181 --auto-metric &
 }
 
 do_stop()
