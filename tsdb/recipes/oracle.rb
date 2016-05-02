@@ -36,5 +36,6 @@ end
 git '/opentsdb/' do
   repository "https://github.com/OpenTSDB/opentsdb.git"
   reference "master"
-  action :sync
+  checkout_branch "master"
+  action :checkout
 end

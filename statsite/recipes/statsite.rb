@@ -15,7 +15,8 @@ end
 git '/statsite/' do
   repository "https://github.com/armon/statsite.git"
   reference "master"
-  action :sync
+  checkout_branch "master"
+  action :checkout
 end
 
 execute 'build statsite' do
