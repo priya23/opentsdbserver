@@ -34,7 +34,7 @@ end
 
 #cloning the tsbd code
 git '/opentsdb/' do
-  repository "git://github.com/OpenTSDB/opentsdb.git"
+  repository "https://github.com/OpenTSDB/opentsdb.git"
   reference "master"
   checkout_branch "master"
   action :checkout

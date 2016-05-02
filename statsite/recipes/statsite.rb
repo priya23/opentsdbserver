@@ -1,25 +1,34 @@
-bash 'installing dependencies' do 
-	code <<-EOH
-		apt-get -y install autoconf automake libtool
-	EOH
+#install the dependencies
+%w{autoconf automake libtool libcheck}.each do |pkg|
+  package pkg do
+    action :install
+    options '--force-yes'
+  end
 end
 
-bash 'installing statsite' do
-	code <<-EOH
-		cd /home
-		git clone https://github.com/armon/statsite.git
-		cd statsite
-		./bootstrap.sh
-		./configure
-		make
-	EOH
+directory '/statsite' do
+  mode '0755'
+  action :create
 end
 
-template '/home/statsite/statsite.conf' do
+#cloning from git
+git '/statsite/' do
+  repository "https://github.com/armon/statsite.git"
+  reference "master"
+  checkout_branch "master"
+  action :checkout
+end
+
+execute 'build statsite' do
+        cwd '/statsite'
+        command "./bootstrap.sh; ./configure ; make"
+end
+
+template '/statsite/statsite.conf' do
 	source 'statsite.conf.erb'
 end
 
-template '/home/statsite/sinks/opentsdb.js' do
+template '/statsite/sinks/opentsdb.js' do
 	source 'opentsdb.js.erb'
 end
 
@@ -28,9 +37,6 @@ template '/etc/init.d/statsite' do
 	mode '555'
 end
 
-bash 'start server' do
-	code <<-EOH
-		cd /home/statsite
-		service statsite start
-	EOH
+execute 'start the server' do
+  command "service statsite start"
 end

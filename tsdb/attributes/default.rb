@@ -1,1 +1,1 @@
-default['tsdb']['base_path'] = '/opt'
+default['tsdb']['base_path'] = '/opentsdb'
