@@ -5,7 +5,7 @@ git "#{node['tsdb']['base_path']}" do
 end
 
 execute 'build opentsdb' do
-        cwd '/opt/opentsdb'
+        cwd '/opentsdb'
         command "./build.sh ; ./configure ; make ; make install"
 end
 
