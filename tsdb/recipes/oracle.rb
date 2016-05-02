@@ -21,6 +21,7 @@ when 'debian', 'ubuntu'
       end
 end
 
+#creating tem for tsdb server
 directory '/tmp/cache1' do
   mode '0755'
   action :create
@@ -31,6 +32,7 @@ directory '/opentsdb' do
   action :create
 end
 
+#cloning the tsbd code
 git '/opentsdb/' do
   repository "git://github.com/OpenTSDB/opentsdb.git"
   reference "master"

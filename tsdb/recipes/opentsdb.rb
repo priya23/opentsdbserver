@@ -1,20 +1,16 @@
-#sync from git
-git "#{node['tsdb']['base_path']}" do
-        repository 'git://github.com/OpenTSDB/opentsdb.git'
-        action :sync
-end
-
+#building tsdb
 execute 'build opentsdb' do
         cwd '/opentsdb'
         command "./build.sh ; ./configure ; make ; make install"
 end
 
-
+#placing the init script
 template '/etc/init.d/opentsdb' do
 	source 'startscript.sh.erb'
 	mode '555'
 end
 
+#staring the service
 execute 'start the server' do
-        command 'service opentsdb start'
+        command 'rm -rf /tmp/cache1/*;service opentsdb start'
 end
