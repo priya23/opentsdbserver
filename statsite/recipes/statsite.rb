@@ -1,5 +1,5 @@
 #install the dependencies
-%w{autoconf automake libtool libcheck}.each do |pkg|
+%w{autoconf automake libtool }.each do |pkg|
   package pkg do
     action :install
     options '--force-yes'
@@ -15,8 +15,7 @@ end
 git '/statsite/' do
   repository "https://github.com/armon/statsite.git"
   reference "master"
-  checkout_branch "master"
-  action :checkout
+  action :sync
 end
 
 execute 'build statsite' do
